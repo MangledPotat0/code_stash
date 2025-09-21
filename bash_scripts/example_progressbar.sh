@@ -3,12 +3,14 @@
 progress-bar() {
 	local i=$1
 	local len=$2
-	local j
+	local digits=${#len}
 
-	local bar_limit=60
+	local bar_limit=$((68-2*$digits))
 	local percent_done=$((i*100/len))
 	local bar_count=$((percent_done*bar_limit/100))
 	local s="["
+
+	local j
 	for ((j=0; j < bar_count; j++)); do
 	    s+="|"
 	done
@@ -21,7 +23,7 @@ progress-bar() {
 
 process_file() {
 	local file=$1
-	sleep .05
+	sleep .01
 }
 
 shopt -s globstar nullglob
